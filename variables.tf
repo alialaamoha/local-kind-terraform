@@ -9,3 +9,14 @@ variable "kube_config_path" {
   description = "the path of the kubeconfig"
   default = "~/.kube/config"
 }
+
+variable "argocd_admin_pass" {
+  type = string
+  default = "admin"
+}
+
+variable "argocd_hostname" {
+  type = string
+  description = "the url of the argocd"
+  default = "argocd.dev.devandshell.com"
+}
