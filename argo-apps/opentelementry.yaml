@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: opentelemetry-operator
+  namespace: gitops
+spec:
+  destination:
+    namespace: opentelemetry-operator-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+    chart: opentelemetry-operator
+    targetRevision: x
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

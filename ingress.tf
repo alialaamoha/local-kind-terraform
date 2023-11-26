@@ -18,12 +18,12 @@ resource "kubernetes_namespace" "nginx_namespace" {
     metadata {
       name = "ingress-nginx"
     }
-    depends_on = [ data.kubectl_file_documents.nginx_yaml_files ]
+    depends_on = [ kind_cluster.dev-cluster, data.kubectl_file_documents.nginx_yaml_files ]
 }
 resource "kubectl_manifest" "nginx_manifest" {
   provider = kubectl
   for_each = data.kubectl_file_documents.nginx_yaml_files.manifests
   yaml_body = each.value
   wait = true
-  depends_on = [ kind_cluster.dev-cluster ]
+  depends_on = [ kubernetes_namespace.nginx_namespace ]
 }
