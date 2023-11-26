@@ -26,7 +26,7 @@ resource "helm_release" "helm_argo" {
   }
   set {
     name = "configs.secret.argocdServerAdminPassword"
-    value = var.argocd_admin_pass
+    value = bcrypt(var.argocd_admin_pass)
   }
   depends_on = [ kubectl_manifest.nginx_manifest ]
 }
