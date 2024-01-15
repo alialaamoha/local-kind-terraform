@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: gitops
+  name: rabbitmq
+spec:
+  destination:
+    namespace: messaging
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: rabbitmq
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: x
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

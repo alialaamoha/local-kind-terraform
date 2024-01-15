@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metric-server
+  namespace: gitops
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/bitnami/charts
+    targetRevision: HEAD
+    chart: metricserver
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

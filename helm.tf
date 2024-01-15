@@ -31,6 +31,7 @@ resource "helm_release" "helm_argo" {
   depends_on = [ kubectl_manifest.nginx_manifest ]
 }
 
+// adding all the declartive argocd in the argo-apps folder to the cluster
 resource "kubectl_manifest" "argocd_apps" {
   provider = kubectl
   for_each = fileset(path.module,"argo-apps/*.yaml")
@@ -38,4 +39,3 @@ resource "kubectl_manifest" "argocd_apps" {
   wait = true
   depends_on = [ helm_release.helm_argo ]
 }
-

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgress
+  namespace: gitops
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: postgresqlPassword
+        value: postgres
+      - name: postgresqlUsername
+        value: postgres
+      - name: postgresqlDatabase
+        value: postgres
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 13.2.29
+    chart: postgresql
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

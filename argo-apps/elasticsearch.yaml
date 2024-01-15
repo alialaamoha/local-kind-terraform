@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: elasticsearch
+  namespace: gitops 
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    repoURL: https://helm.elastic.co
+    targetRevision: HEAD
+    chart: elasticsearch
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+

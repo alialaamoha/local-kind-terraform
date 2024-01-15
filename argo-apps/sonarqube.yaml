@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonarqube
+  namespace: gitops
+spec:
+  destination:
+    namespace: devsecops
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    chart: sonarqube
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: x
+    helm:
+     values: |
+        - sonarqubeUsername=admin 
+        - sonarqubePassword=password 
+        - postgresql.auth.password=secretpassword 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  
+ 
