@@ -10,9 +10,8 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: HEAD
+    targetRevision: x
     chart: keycloak
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

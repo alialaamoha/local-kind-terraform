@@ -10,9 +10,8 @@ spec:
   project: default
   source:
     repoURL: https://helm.releases.hashicorp.com
-    targetRevision: master
+    targetRevision: x
     chart: vault
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -13,13 +13,14 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: x
     helm:
-     values: |
-        - sonarqubeUsername=admin 
-        - sonarqubePassword=password 
-        - postgresql.auth.password=secretpassword 
+      parameters:
+        - name: postgresql.auth.password
+          value: 'secretpassword'
+        - name: sonarqubeUsername
+          value: admin
+        - name: sonarqubePassword
+          value: password
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
   
- 

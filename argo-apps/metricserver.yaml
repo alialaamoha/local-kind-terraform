@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/bitnami/charts
-    targetRevision: HEAD
+    targetRevision: x
     chart: metricserver
   syncPolicy:
     automated:

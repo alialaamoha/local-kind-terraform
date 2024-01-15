@@ -10,9 +10,8 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: kafka
-    targetRevision: HEAD
+    targetRevision: x
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

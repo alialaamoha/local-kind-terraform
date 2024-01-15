@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: HEAD
+    targetRevision: x
     chart: redis
   syncPolicy:
     automated:
